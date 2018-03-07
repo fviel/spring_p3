@@ -30,53 +30,38 @@ public class Book implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id_book")
-    private int idBook;
-    
-    @Column(name="title")
+    private Long id;
     private String title;
-    
-    @Column(name="isbn")
     private String isbn;
-    
-    @Column(name="publisher")
     private String publisher;
-    
+
     @ManyToMany
-    @JoinTable(name = "tb_author_book"/*, schema ="test_project"*/,
-            joinColumns = @JoinColumn(name="id_book"), inverseJoinColumns=@JoinColumn(name="id_author"))
+    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
+    inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors = new HashSet<>();
 
     public Book() {
     }
 
-    public Book(int idBook, String title, String isbn, String publisher) {
-        this.idBook = idBook;
+    public Book(String title, String isbn, String publisher) {
         this.title = title;
         this.isbn = isbn;
         this.publisher = publisher;
     }
-    
-     public Book( String title, String isbn, String publisher) {
-        this.title = title;
-        this.isbn = isbn;
-        this.publisher = publisher;
-    }
-    
-    public Book(int idBook, String title, String isbn, String publisher, Set<Author> authors) {
-        this.idBook = idBook;
+
+    public Book(String title, String isbn, String publisher, Set<Author> authors) {
         this.title = title;
         this.isbn = isbn;
         this.publisher = publisher;
         this.authors = authors;
     }
 
-    public int getIdBook() {
-        return idBook;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdBook(int idBook) {
-        this.idBook = idBook;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -112,34 +97,28 @@ public class Book implements Serializable{
     }
 
     @Override
-    public String toString() {
-        return "Book{" + "idBook=" + idBook + ", title=" + title + ", isbn=" + isbn + ", publisher=" + publisher + ", authors=" + authors + '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        return id != null ? id.equals(book.id) : book.id == null;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + this.idBook;
-        return hash;
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Book other = (Book) obj;
-        if (this.idBook != other.idBook) {
-            return false;
-        }
-        return true;
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", authors=" + authors +
+                '}';
     }
-
-    
 }

@@ -8,6 +8,7 @@ package com.fernando.spring1.model;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,46 +29,33 @@ public class Author implements Serializable{
         
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id_author")
-    private Integer idAuthor;
-    
-    @Column(name="first_name")
+    private Long id;
     private String firstName;
-    
-    @Column(name="last_name")
     private String lastName;
-    
-    @ManyToMany (mappedBy="authors")
-    private HashSet<Book> books = new HashSet<>();
+
+    @ManyToMany(mappedBy = "authors")
+    private Set<Book> books  = new HashSet<>();
 
     public Author() {
     }
 
-    public Author(Integer idAuthor, String firstName, String lastName) {
-        this.idAuthor = idAuthor;
+    public Author(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-    
-    public Author(int idAuthor, String firstName, String lastName, HashSet<Book> books) {
-        this.idAuthor = idAuthor;
+
+    public Author(String firstName, String lastName, Set<Book> books) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.books = books;
     }
-    
-    public Author(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.books = new HashSet<Book>();
+
+    public Long getId() {
+        return id;
     }
 
-    public int getIdAuthor() {
-        return idAuthor;
-    }
-
-    public void setIdAuthor(int idAuthor) {
-        this.idAuthor = idAuthor;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -86,41 +74,36 @@ public class Author implements Serializable{
         this.lastName = lastName;
     }
 
-    public HashSet<Book> getBooks() {
+    public Set<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(HashSet<Book> books) {
+    public void setBooks(Set<Book> books) {
         this.books = books;
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + this.idAuthor;
-        return hash;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Author author = (Author) o;
+
+        return id != null ? id.equals(author.id) : author.id == null;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Author other = (Author) obj;
-        if (this.idAuthor != other.idAuthor) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override
     public String toString() {
-        return "Author{" + "idAuthor=" + idAuthor + ", firstName=" + firstName + ", lastName=" + lastName + ", books=" + books + '}';
+        return "Author{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", books=" + books +
+                '}';
     }
 }

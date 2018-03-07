@@ -5,12 +5,13 @@
  */
 package com.fernando.spring1.repositories;
 
-import com.fernando.spring1.model.Author;
+import com.fernando.spring1.model.Book;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author Fernando
  */
-public interface AuthorRepo  extends CrudRepository<Author, Integer>{   
+public interface BookRepository extends CrudRepository<Book, Long>{
+    
 }
