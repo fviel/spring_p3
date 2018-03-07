@@ -6,9 +6,8 @@
 package com.fernando.spring1.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
+import java.util.HashSet;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +29,7 @@ public class Author implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id_author")
-    private int idAuthor;
+    private Integer idAuthor;
     
     @Column(name="first_name")
     private String firstName;
@@ -39,22 +38,28 @@ public class Author implements Serializable{
     private String lastName;
     
     @ManyToMany (mappedBy="authors")
-    private Set<Book> books = new HashSet<>();
+    private HashSet<Book> books = new HashSet<>();
 
     public Author() {
     }
 
-    public Author(int idAuthor, String firstName, String lastName) {
+    public Author(Integer idAuthor, String firstName, String lastName) {
         this.idAuthor = idAuthor;
         this.firstName = firstName;
         this.lastName = lastName;
     }
     
-    public Author(int idAuthor, String firstName, String lastName, Set<Book> books) {
+    public Author(int idAuthor, String firstName, String lastName, HashSet<Book> books) {
         this.idAuthor = idAuthor;
         this.firstName = firstName;
         this.lastName = lastName;
         this.books = books;
+    }
+    
+    public Author(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.books = new HashSet<Book>();
     }
 
     public int getIdAuthor() {
@@ -81,11 +86,11 @@ public class Author implements Serializable{
         this.lastName = lastName;
     }
 
-    public Set<Book> getBooks() {
+    public HashSet<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(Set<Book> books) {
+    public void setBooks(HashSet<Book> books) {
         this.books = books;
     }
 
