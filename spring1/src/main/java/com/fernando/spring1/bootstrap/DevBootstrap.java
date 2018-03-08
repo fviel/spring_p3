@@ -7,15 +7,29 @@ package com.fernando.spring1.bootstrap;
 
 import com.fernando.spring1.model.Author;
 import com.fernando.spring1.model.Book;
+import com.fernando.spring1.repositories.AuthorRepository;
+import com.fernando.spring1.repositories.BookRepository;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
 
 
 /**
  *
  * @author Fernando
  */
+@Component //transforma em spring bean
 public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> {
+    
+    private AuthorRepository authorRepository;
+    private BookRepository bookRepository;
+
+    public DevBootstrap(AuthorRepository authorRepository, BookRepository bookRepository) {
+        this.authorRepository = authorRepository;
+        this.bookRepository = bookRepository;
+    }
+    
+    
     
       @Override
     public void onApplicationEvent(ContextRefreshedEvent e) {
@@ -30,11 +44,17 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         eric.getBooks().add(ddd);
         ddd.getAuthors().add(eric);
         
+        authorRepository.save(eric);
+        bookRepository.save(ddd);
+        
         //Rod
         Author rod = new Author("Rod", "Jonhson");
         Book noEJB = new Book("J2EE Development without EJB", "1235", "Worx");
         rod.getBooks().add(noEJB);
         noEJB.getAuthors().add(rod);
+        
+        authorRepository.save(rod);
+        bookRepository.save(noEJB);
     }
 
   
