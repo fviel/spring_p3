@@ -29,7 +29,7 @@ public class Author implements Serializable{
         
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long idAuthor;
     private String firstName;
     private String lastName;
 
@@ -51,11 +51,11 @@ public class Author implements Serializable{
     }
 
     public Long getId() {
-        return id;
+        return idAuthor;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.idAuthor = id;
     }
 
     public String getFirstName() {
@@ -89,18 +89,18 @@ public class Author implements Serializable{
 
         Author author = (Author) o;
 
-        return id != null ? id.equals(author.id) : author.id == null;
+        return idAuthor != null ? idAuthor.equals(author.idAuthor) : author.idAuthor == null;
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return idAuthor != null ? idAuthor.hashCode() : 0;
     }
 
     @Override
     public String toString() {
         return "Author{" +
-                "id=" + id +
+                "id=" + idAuthor +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", books=" + books +

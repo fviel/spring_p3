@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -30,10 +31,13 @@ public class Book implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long idBook;
     private String title;
     private String isbn;
-    private String publisher;
+    
+    @OneToOne
+    @JoinColumn(name="idPublisher")
+    private Publisher publisher;
 
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
@@ -43,13 +47,13 @@ public class Book implements Serializable{
     public Book() {
     }
 
-    public Book(String title, String isbn, String publisher) {
+    public Book(String title, String isbn, Publisher publisher) {
         this.title = title;
         this.isbn = isbn;
         this.publisher = publisher;
     }
 
-    public Book(String title, String isbn, String publisher, Set<Author> authors) {
+    public Book(String title, String isbn, Publisher publisher, Set<Author> authors) {
         this.title = title;
         this.isbn = isbn;
         this.publisher = publisher;
@@ -57,11 +61,11 @@ public class Book implements Serializable{
     }
 
     public Long getId() {
-        return id;
+        return idBook;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.idBook = id;
     }
 
     public String getTitle() {
@@ -80,11 +84,11 @@ public class Book implements Serializable{
         this.isbn = isbn;
     }
 
-    public String getPublisher() {
+    public Publisher getPublisher() {
         return publisher;
     }
 
-    public void setPublisher(String publisher) {
+    public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
     }
 
@@ -103,18 +107,18 @@ public class Book implements Serializable{
 
         Book book = (Book) o;
 
-        return id != null ? id.equals(book.id) : book.id == null;
+        return idBook != null ? idBook.equals(book.idBook) : book.idBook == null;
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return idBook != null ? idBook.hashCode() : 0;
     }
 
     @Override
     public String toString() {
         return "Book{" +
-                "id=" + id +
+                "id=" + idBook +
                 ", title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", publisher='" + publisher + '\'' +
