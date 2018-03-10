@@ -7,6 +7,7 @@ package com.fernando.spring1.model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,19 +35,16 @@ public class Publisher implements Serializable {
     private String name;
     
     @Column(name = "adress")
-    private String address;
-    
-    @OneToOne(mappedBy="publisher")
-    private Book bookPublished;
+    private String address;    
 
-    public Long getId() {
+    public Long getIdPublisher() {
         return idPublisher;
     }
 
-    public void setId(Long id) {
-        this.idPublisher = id;
+    public void setIdPublisher(Long idPublisher) {
+        this.idPublisher = idPublisher;
     }
-
+    
     public String getName() {
         return name;
     }
@@ -63,19 +61,12 @@ public class Publisher implements Serializable {
         this.address = address;
     }
 
-    public Book getBookPublished() {
-        return bookPublished;
-    }
-
-    public void setBookPublished(Book bookPublished) {
-        this.bookPublished = bookPublished;
-    }
+  
 
     public Publisher(Long id, String name, String address, Book bookPublished) {
         this.idPublisher = id;
         this.name = name;
         this.address = address;
-        this.bookPublished = bookPublished;
     }
 
     public Publisher(String name, String address) {
@@ -115,6 +106,6 @@ public class Publisher implements Serializable {
 
     @Override
     public String toString() {
-        return "Publisher{" + "id=" + idPublisher + ", name=" + name + ", address=" + address + ", bookPublished=" + bookPublished + '}';
+        return "Publisher{" + "id=" + idPublisher + ", name=" + name + ", address=" + address +'}';
     }    
 }

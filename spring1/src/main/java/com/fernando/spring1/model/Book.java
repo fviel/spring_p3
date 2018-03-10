@@ -8,6 +8,7 @@ package com.fernando.spring1.model;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,7 +46,6 @@ public class Book implements Serializable{
     private String isbn;
 
     @OneToOne
-    @JoinColumn(name="idPublisher")
     private Publisher publisher;
 
     @ManyToMany
@@ -69,12 +69,12 @@ public class Book implements Serializable{
         this.authors = authors;
     }
 
-    public Long getId() {
+    public Long getIdBook() {
         return idBook;
     }
 
-    public void setId(Long id) {
-        this.idBook = id;
+    public void setIdBook(Long idBook) {
+        this.idBook = idBook;
     }
 
     public String getTitle() {

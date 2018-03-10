@@ -8,6 +8,7 @@ package com.fernando.spring1.model;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,27 +24,27 @@ import javax.validation.constraints.NotNull;
  * @author Fernando
  */
 @Entity
-@Table (name="tb_author"/*, schema="test_project"*/)
-public class Author implements Serializable{
+@Table(name = "tb_author"/*, schema="test_project"*/)
+public class Author implements Serializable {
 
     private static final long serialVersionUID = 3783093145423408126L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	 @Column(name = "id_author")
+    @Column(name = "id_author")
     private Long idAuthor;
 
-	 @NotNull
-	 @Column(name = "first_name")
+    @NotNull
+    @Column(name = "first_name")
     private String firstName;
 
-	 @NotNull
-	 @Column(name = "last_name")
+    @NotNull
+    @Column(name = "last_name")
     private String lastName;
 
-	 @NotNull
-    @ManyToMany(mappedBy = "authors")
-    private Set<Book> books  = new HashSet<>();
+    @NotNull
+    @ManyToMany(mappedBy = "authors", cascade = CascadeType.ALL)
+    private Set<Book> books = new HashSet<>();
 
     public Author() {
     }
@@ -59,13 +60,13 @@ public class Author implements Serializable{
         this.books = books;
     }
 
-    public Long getId() {
+    public Long getIdAuthor() {
         return idAuthor;
     }
 
-    public void setId(Long id) {
-        this.idAuthor = id;
-    }
+    public void setIdAuthor(Long idAuthor) {
+        this.idAuthor = idAuthor;
+    }  
 
     public String getFirstName() {
         return firstName;
@@ -93,8 +94,12 @@ public class Author implements Serializable{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Author author = (Author) o;
 
@@ -108,11 +113,11 @@ public class Author implements Serializable{
 
     @Override
     public String toString() {
-        return "Author{" +
-                "id=" + idAuthor +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", books=" + books +
-                '}';
+        return "Author{"
+                + "id=" + idAuthor
+                + ", firstName='" + firstName + '\''
+                + ", lastName='" + lastName + '\''
+                + ", books=" + books
+                + '}';
     }
 }
