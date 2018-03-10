@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
  * @author Fernando
  */
 @Component //transforma em spring bean
+//ApplicationListener<ContextRefreshedEvent> é um dos eventos padrões do spring, ainda não entendi direito, mas vou ver
 public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> {
     
     private AuthorRepository authorRepository;
