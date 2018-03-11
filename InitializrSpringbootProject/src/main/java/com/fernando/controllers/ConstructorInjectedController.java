@@ -12,18 +12,19 @@ import com.fernando.services.GreetingService;
  * @author Fernando
  */
 public class ConstructorInjectedController {
-    
-     private GreetingService greetingService;
+
+    private GreetingService greetingService;
 
     //neste método é feito o set da dependencia, ou seja na construtora
-    public ConstructorInjectedController(GreetingService greetingService){
+    // é passado o objeto da dependência.
+    //observe que não foi feito um new, pois o container identifica que é 
+    //um ponto de injeção.
+    public ConstructorInjectedController(GreetingService greetingService) {
         this.greetingService = greetingService;
     }
-    
-    public String sayHello(){
-        return greetingService.sayGreeting();        
+
+    public String sayHello() {
+        return greetingService.sayGreeting();
     }
-    
-    
-   
+
 }
