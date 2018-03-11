@@ -1,6 +1,9 @@
 package com.fernando;
 
+import com.fernando.controllers.ConstructorInjectedController;
 import com.fernando.controllers.MyController;
+import com.fernando.controllers.PropertyInjectedController;
+import com.fernando.controllers.SetterInjectedController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -18,5 +21,12 @@ public class DiDemoApplication {
         
         //chama o método hello do bean
         controller.hello();
+        
+        //executa DI por propriedade 
+        System.out.println(ctx.getBean(PropertyInjectedController.class).sayHello());
+        
+        System.out.println(ctx.getBean(SetterInjectedController.class).sayHello());
+        
+        System.out.println(ctx.getBean(ConstructorInjectedController.class).sayHello());
     }
 }

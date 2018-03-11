@@ -6,14 +6,16 @@
 package com.fernando.controllers;
 
 import com.fernando.services.GreetingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 /**
  * Este é um exemplo de DI por setter
  * @author Fernando
  */
-//@Controller
+@Controller
 public class SetterInjectedController {
+    
     
     private GreetingService greetingService;
     
@@ -22,6 +24,7 @@ public class SetterInjectedController {
     }
     
     //neste método é feito o set da dependencia
+    @Autowired // avisa para injetar no método
     public void setGreetingService(GreetingService greetingService){
         this.greetingService = greetingService;
     }

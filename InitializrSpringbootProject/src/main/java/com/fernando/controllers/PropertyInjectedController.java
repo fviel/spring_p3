@@ -6,6 +6,7 @@
 package com.fernando.controllers;
 
 import com.fernando.services.GreetingServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -13,9 +14,10 @@ import org.springframework.stereotype.Controller;
  *
  * @author Fernando
  */
-//@Controller
+@Controller
 public class PropertyInjectedController {
     //Esse é um exemplo de DI por 'property', GreetingServiceImpl é uma propriedade/atributo público injetada;
+    @Autowired //Avisa ao container que é um ponto de injeção de dependência
     public GreetingServiceImpl greetingService;
     
     public String sayHello(){
