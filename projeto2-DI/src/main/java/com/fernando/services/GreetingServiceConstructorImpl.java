@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 
 //define como um spring bean de service
 @Service
-public class GreetingServiceImpl implements GreetingService {
+public class GreetingServiceConstructorImpl implements GreetingService {
 
-    public static final String HELLO_GURUS = "Hello Gurus!";
+    public static final String HELLO_GURUS = "Olá Fernando, este é o retorno de mais um impl de GreetingService para forçar o uso de @Qualifier";
 
     @Override
     public String sayGreeting() {
