@@ -6,16 +6,25 @@
 package com.fernando.jokes.services;
 
 import com.fernando.jokes.entities.Joke;
+import guru.springframework.norris.chuck.ChuckNorrisQuotes;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
 @Profile("en_US")
+@Primary
 public class SillyJokesServiceImpl implements SillyJokesService {
+    
+    
+    
 
     @Override
-    public Joke getJoke() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getJoke() {
+        ChuckNorrisQuotes cnq = new ChuckNorrisQuotes();
+        return cnq.getRandomQuote();
+        //return "que saco";
     }
     
 }

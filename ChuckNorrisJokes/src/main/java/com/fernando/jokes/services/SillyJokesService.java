@@ -13,6 +13,6 @@ import com.fernando.jokes.entities.Joke;
  */
 public interface SillyJokesService {
     
-    public Joke getJoke();
+    public String getJoke();
     
 }
