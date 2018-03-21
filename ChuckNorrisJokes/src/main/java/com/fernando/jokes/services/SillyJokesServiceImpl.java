@@ -17,14 +17,16 @@ import org.springframework.stereotype.Service;
 @Primary
 public class SillyJokesServiceImpl implements SillyJokesService {
     
+    //sendo final, após instanciada, não mais será alterada
+    private final ChuckNorrisQuotes cnq;
     
-    
+    public SillyJokesServiceImpl(){
+        cnq = new ChuckNorrisQuotes();
+    }    
 
     @Override
-    public String getJoke() {
-        ChuckNorrisQuotes cnq = new ChuckNorrisQuotes();
+    public String getJoke() {        
         return cnq.getRandomQuote();
-        //return "que saco";
     }
     
 }
