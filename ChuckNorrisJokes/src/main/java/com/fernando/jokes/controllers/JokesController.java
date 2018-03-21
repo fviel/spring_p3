@@ -14,21 +14,19 @@ public class JokesController {
     
     SillyJokesService sjs;
 
-    //faz o autowired na construtora
+    //faz o autowired automaticamente na construtora, não preciso declarar @Autowired
     public JokesController(SillyJokesService sjs) {
         this.sjs = sjs;
-    }
+    }      
     
-    
-    
-    
-    
-    
+    //esta é a definição usada no vídeo, mas
+    //@RequestMapping({"/",""})
     @RequestMapping("/piadas")
     public String getJokes(Model model){
-        System.out.println(sjs.getJoke());
+        //adiciona o valor na model
         model.addAttribute("joke", sjs.getJoke());
         
+        //chama a página html a ser exibida
         return "showjokes";
     }
     
