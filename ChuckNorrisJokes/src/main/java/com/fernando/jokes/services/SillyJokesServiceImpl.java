@@ -20,9 +20,17 @@ public class SillyJokesServiceImpl implements SillyJokesService {
     //sendo final, após instanciada, não mais será alterada
     private final ChuckNorrisQuotes cnq;
     
-    public SillyJokesServiceImpl(){
+    
+    //antigo construtor, onde eu fazia o new de ChuckNorrisQuotes
+    /*public SillyJokesServiceImpl(){
         cnq = new ChuckNorrisQuotes();
-    }    
+    } */
+
+    public SillyJokesServiceImpl(ChuckNorrisQuotes cnq) {
+        this.cnq = cnq;
+    }
+    
+    
 
     @Override
     public String getJoke() {        
