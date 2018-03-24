@@ -6,6 +6,7 @@
 package com.fernando.inheritancetest.entities;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -18,7 +19,7 @@ import javax.persistence.Table;
  */
 
    @Entity
-   @Table(name = "tb_vehicle", schema = "vehicle")
+   @Table(name = "tb_vehicle")
    @Inheritance(strategy = InheritanceType.JOINED)
 public class Vehicle implements Serializable {
 
@@ -26,6 +27,8 @@ public class Vehicle implements Serializable {
        
     @Id
     private int id;
+    
+    @Column(name="license_plate")
     private String licensePlate;
 
     public int getId() {

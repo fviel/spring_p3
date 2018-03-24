@@ -6,12 +6,14 @@
 package com.fernando.inheritancetest.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
  * @author Fernando
  */
 @Entity
+@Table(name = "tb_commercial_vehicle")
 public class CommercialVehicle extends Vehicle{
     
     private String owner;
