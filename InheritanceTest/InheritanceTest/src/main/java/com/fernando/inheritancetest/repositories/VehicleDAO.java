@@ -10,6 +10,8 @@ import com.fernando.inheritancetest.entities.Vehicle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 
 /**
  *
@@ -17,11 +19,36 @@ import java.util.Date;
  * Classe responsável por interagir com o banco de dados em uma camada abaixo.
  */
 public class VehicleDAO extends GenericDAO<Integer, Vehicle> {
+ 
 
     //Construtor obrigatório exigido pela minha Generic
-    public VehicleDAO(Class<Vehicle> entityClass) {
-        super(entityClass);
+    public VehicleDAO() {
+        super(Vehicle.class);
     }
+
+    public List<Vehicle> listVehicles() {
+		// o nome da named query precisa ser o mesmo nome do método
+		Query query = super.getEntityManager().createNamedQuery("Vehicle.listVehicles");
+		try {
+			@SuppressWarnings("unchecked")
+			List<Vehicle> retorno = query.getResultList();
+			return retorno;
+		} catch (NoResultException ne) {
+			return null;
+		}
+	}
+
+	public List<Vehicle> findByScore(Integer score) {
+		Query query = super.getEntityManager().createNamedQuery("Vehicle.findByScore");
+		query.setParameter("score", score);
+		try {
+			@SuppressWarnings("unchecked")
+			List<Vehicle> retorno = query.getResultList();
+			return retorno;		
+		} catch (NoResultException ne) {
+			return null;
+		}
+	}
    
 
 }

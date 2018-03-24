@@ -7,6 +7,8 @@ package com.fernando.inheritancetest;
 
 import com.fernando.inheritancetest.entities.CommercialVehicle;
 import com.fernando.inheritancetest.entities.Vehicle;
+import com.fernando.inheritancetest.repositories.CommercialVehicleDAO;
+import com.fernando.inheritancetest.repositories.VehicleDAO;
 
 /**
  *
@@ -15,10 +17,16 @@ import com.fernando.inheritancetest.entities.Vehicle;
 public class Run {
 
     public static void main(String... args) {
+        
+        VehicleDAO vdao = new VehicleDAO();
+        CommercialVehicleDAO cvdao = new CommercialVehicleDAO();
+        
+        
         Vehicle v1 = new Vehicle(0, "abc1234");
         Vehicle v2 = new Vehicle(1, "bbc1234");
         Vehicle v3 = new Vehicle(2, "cbc1234");
         Vehicle v4 = new Vehicle(3, "dbc1234");
+        
         
         CommercialVehicle cv1 = new CommercialVehicle(v1, "fernando");
         CommercialVehicle cv2 = new CommercialVehicle("fernando");
@@ -28,6 +36,8 @@ public class Run {
         
         cv2 = (CommercialVehicle) v1;
         System.out.println("CommercialVehicle: " + cv2);
+        
+        
         
         
         
