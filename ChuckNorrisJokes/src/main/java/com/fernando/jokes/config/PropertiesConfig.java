@@ -10,14 +10,21 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 /**
  *  Arquivo de properties citando mais de um property
+ *  Observe que há duas formas de declarar um PropertySource.
+ *   
  * @author Fernando
  */
 @Configuration
-@PropertySource({"classpath:config.properties", "classpath:config2.properties"})
+//@PropertySource({"classpath:config.properties", "classpath:config2.properties"})
+@PropertySources({
+    @PropertySource("classpath:config.properties"),
+    @PropertySource( "classpath:config2.properties")
+})
 public class PropertiesConfig {
     
  /*
