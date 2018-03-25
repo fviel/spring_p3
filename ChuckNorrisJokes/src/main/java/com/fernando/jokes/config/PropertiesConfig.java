@@ -13,11 +13,11 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 /**
- *
+ *  Arquivo de properties citando mais de um property
  * @author Fernando
  */
 @Configuration
-@PropertySource("classpath:config.properties")
+@PropertySource({"classpath:config.properties", "classpath:config2.properties"})
 public class PropertiesConfig {
     
  /*
