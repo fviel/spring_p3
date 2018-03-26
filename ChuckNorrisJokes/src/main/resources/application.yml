@@ -1,0 +1,14 @@
+guru:
+    jms:
+        username: JMS username de exemplo
+        password: some pwd 
+        uri: some url
+        
+---
+
+spring:
+    prifiles: de
+guru:
+    jms:
+        username: username em alemão
+        
